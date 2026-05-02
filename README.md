@@ -1,3 +1,12 @@
+# Contributing
+
+1. Create a branch: `git checkout -b feat/your-feature`
+2. Commit changes: `git commit -m "feat: added something"`
+3. Push: `git push origin feature/your-feature`
+4. Head to GitHub and "Compare and Pull." Create a Pull Request and Confirm Merge if no conflicts are found.
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
