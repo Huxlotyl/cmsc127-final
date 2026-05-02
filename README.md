@@ -1,4 +1,4 @@
-# Contributing
+## Contributing
 
 1. Create a branch: `git checkout -b feat/your-feature`
 2. Commit changes: `git commit -m "feat: added something"`
