@@ -1,0 +1,205 @@
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;600;700&display=swap');
+
+:root {
+    --lto-blue: #0037AF;
+    --lto-hover-blue: #0a66c9;
+    --text-white: #FFFFFF;
+    --glass-white: rgba(255, 255, 255, 0.8);
+}
+
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    font-family: 'Work Sans', sans-serif;
+    background-color: var(--text-white);
+}
+
+/*Sidebar */
+.sidebar {
+    width: 75px;
+    background-color: var(--lto-blue);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: 260px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    height: 100px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo {
+    width: 75px;
+    min-width: 50px;
+    transition: transform 0.3s ease;
+    opacity: 1;
+    margin-left: 12px;
+    display: flex;
+}
+
+.sidebar-title {
+    margin-left: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-text {
+    margin-left: 20px;
+    opacity: 0; 
+    transition: opacity 0.2s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.sidebar:hover .sidebar-title,  .sidebar:hover .sidebar-text{
+    opacity: 1;
+}
+
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    flex: 1; 
+}
+
+.nav-item, .sidebar-footer {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-item:hover, .sidebar-footer:hover {
+    background-color: var(--lto-hover-blue);
+}
+
+.nav-icon {
+    font-size: 25px; 
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+    font-size: 14px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 10px 60px;
+    background-color: var(--glass-white);
+    overflow-y: auto;
+}
+
+.dashboard-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    color: var(--lto-blue);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: var(--text-white);
+    padding: 0 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+
+/* Banner bg*/
+    background: 
+        linear-gradient(
+        to right,
+        rgba(0, 55, 175, 0.8) 0%,
+        rgba(255, 166, 0, 0.7) 100%
+        ),
+        url("../assets/lto_bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.description-content h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 38px;
+  margin-bottom: 5px;
+}
+
+.description-content p {
+  font-weight: 200;
+  max-width: 600px;
+}
+
+/* Action Cards */
+.action-border {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.action-card {
+  background: var(--glass-white);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.card-icon {
+  font-size: 45px;
+  color: var(--lto-blue);
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.card-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--lto-blue);
+  border-top: 2px solid var(--lto-blue);
+  padding-top: 15px;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+/* Right-most hover state from your image */
+.action-card:hover {
+  background-color: var(--lto-blue);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 71, 187, 0.3);
+}
+
+.action-card:hover .card-icon, .action-card:hover .card-label {
+  color: white;
+  border-color: white;
+}
