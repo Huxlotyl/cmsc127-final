@@ -29,6 +29,7 @@
 
 .sidebar:hover {
     width: 260px;
+    transition: ease-out 0.3s;
 }
 
 .sidebar-header {
@@ -93,6 +94,7 @@
 .nav-icon {
     font-size: 25px; 
     min-width: 20px;
+    margin-left: 1px;
     display: flex;
     justify-content: center;
 }
@@ -106,7 +108,7 @@
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 10px 60px;
+    padding: 10px 30px;
     background-color: var(--glass-white);
     overflow-y: auto;
 }
@@ -116,21 +118,28 @@
     font-size: 45px;
     color: var(--lto-blue);
     letter-spacing: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
+    margin-top: 12px;
+}
+
+.dashboard-divider {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.112);
+    margin-bottom: 35px;
 }
 
 .description {
     color: var(--text-white);
     padding: 0 50px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 0 auto 40px auto;
     border-radius: 12px;
     margin-bottom: 40px;
+    width: 83%;
     height: 220px;
     display: flex;
     align-items: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
 /* Banner bg*/
     background: 
@@ -139,14 +148,14 @@
         rgba(0, 55, 175, 0.8) 0%,
         rgba(255, 166, 0, 0.7) 100%
         ),
-        url("../assets/lto_bg.jpg");
+        url("../assets/lto_bldg.jpg");
     background-size: cover;
     background-position: center;
 }
 
 .description-content h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 38px;
+  font-size: 40px;
   margin-bottom: 5px;
 }
 
@@ -159,7 +168,11 @@
 .action-border {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
+  gap: 70px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .action-card {
@@ -171,8 +184,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  margin-left: 50px;
-  margin-right: 50px;
+  /* margin-left: 50px;
+  margin-right: 50px; */
 }
 
 .card-icon {
@@ -199,7 +212,7 @@
   box-shadow: 0 12px 24px rgba(0, 71, 187, 0.3);
 }
 
-.action-card:hover .card-icon, .action-card:hover .card-label {
+.action-card:hover .card-icon, .action-card:hover .card-text {
   color: white;
-  border-color: white;
+  
 }

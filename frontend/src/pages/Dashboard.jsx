@@ -50,17 +50,23 @@ function Dashboard() {
 
         {/* Main Content Section */}      
         <main className="main-content">
-             <header className="dashboard-header">
-                 <h1>DASHBOARD</h1>
-             </header>
+            <header className="dashboard-header">
+                <h1>DASHBOARD</h1>
+            </header>
+
+            <hr className="dashboard-divider" />
              
-            <section className="description"> 
+            <section 
+                className="description" 
+                onClick={() => window.open("https://portal.lto.gov.ph", "_blank")}
+                style={{ cursor: "pointer" }}
+                > 
                 <div className="description-content">    
                     <h2>Land Transportation Office</h2>
                     <p>A front line government agency showcasing fast and efficient public service for a progressive land transport sector.</p>             
                 </div>
-            </section>          
-        
+            </section>
+                     
             <section className="action-border">
                 {action.map((action, index) => (
                     <div className="action-card" key={index} onClick={() => navigate(action.link)}>
