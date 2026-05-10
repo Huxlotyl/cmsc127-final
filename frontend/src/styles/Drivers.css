@@ -1,0 +1,67 @@
+.drivers-page {
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+.drivers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.drivers-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.drivers-header p {
+  margin: 6px 0 0;
+  color: #666;
+}
+
+.add-driver-btn {
+  padding: 10px 16px;
+  border: none;
+  background: #1f6feb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.drivers-table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.drivers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.drivers-table th,
+.drivers-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.drivers-table th {
+  background: #f8f9fa;
+}
+
+.action-btn {
+  margin-right: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.action-btn.danger {
+  background: #d9534f;
+  color: white;
+}
