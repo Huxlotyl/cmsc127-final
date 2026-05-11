@@ -134,7 +134,7 @@
     margin: 0 auto 40px auto;
     border-radius: 12px;
     margin-bottom: 40px;
-    width: 83%;
+    width: 75%;
     height: 220px;
     display: flex;
     align-items: center;
@@ -172,27 +172,34 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 90%;
+  width: 82%;
 }
 
 .action-card {
   background: var(--glass-white);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 40px 20px;
+  padding: 20px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  /* margin-left: 50px;
-  margin-right: 50px; */
 }
 
 .card-icon {
-  font-size: 45px;
+  font-size: 60px;
   color: var(--lto-blue);
-  margin-bottom: 20px;
+  margin-top: 5%;
+  margin-bottom: 5%;
   transition: color 0.3s;
+}
+
+.card-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 10%;
+  transition: border-color 0.3s, color 0.3s;
 }
 
 .card-label {
@@ -201,7 +208,6 @@
   font-size: 13px;
   color: var(--lto-blue);
   border-top: 2px solid var(--lto-blue);
-  padding-top: 15px;
   transition: border-color 0.3s, color 0.3s;
 }
 
@@ -212,7 +218,7 @@
   box-shadow: 0 12px 24px rgba(0, 71, 187, 0.3);
 }
 
-.action-card:hover .card-icon, .action-card:hover .card-text {
+.action-card:hover .card-icon, .action-card:hover .card-text, .action-card:hover .card-divider {
   color: white;
-  
+  border-color: white;
 }
