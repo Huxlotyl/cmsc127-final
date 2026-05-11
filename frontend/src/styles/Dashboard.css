@@ -134,7 +134,7 @@
     margin: 0 auto 40px auto;
     border-radius: 12px;
     margin-bottom: 40px;
-    width: 75%;
+    width: 80%;
     height: 220px;
     display: flex;
     align-items: center;
@@ -172,14 +172,14 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 82%;
+  width: 87%;
 }
 
 .action-card {
   background: var(--glass-white);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 20px;
+  padding: 35px 40px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -190,16 +190,8 @@
   font-size: 60px;
   color: var(--lto-blue);
   margin-top: 5%;
-  margin-bottom: 5%;
-  transition: color 0.3s;
-}
-
-.card-divider {
-  border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
   margin-bottom: 10%;
-  transition: border-color 0.3s, color 0.3s;
+  transition: color 0.3s;
 }
 
 .card-label {
@@ -218,7 +210,7 @@
   box-shadow: 0 12px 24px rgba(0, 71, 187, 0.3);
 }
 
-.action-card:hover .card-icon, .action-card:hover .card-text, .action-card:hover .card-divider {
+.action-card:hover .card-icon, .action-card:hover .card-text {
   color: white;
   border-color: white;
 }
