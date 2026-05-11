@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../styles/Dashboard.css"; 
+import Sidebar from "../components/Sidebar";
 
 import ltoLogo from "../assets/lto_logo.svg";
 import { GoAlert } from "react-icons/go";
@@ -18,7 +19,7 @@ function Dashboard() {
     };
 
     const action = [
-        { name: "VIEW DRIVERS", icon:  <IoPersonOutline/>},
+        { name: "VIEW DRIVERS", icon:  <IoPersonOutline/>, link: "/drivers" },
         { name: "VIEW VEHICLES", icon: <IoCarOutline />},
         { name: "VIEW REGISTRATIONS", icon: <TbFileDescription />, link: "/registration" },
         { name: "VIEW VIOLATIONS", icon: <GoAlert />},   
@@ -27,26 +28,7 @@ function Dashboard() {
     return (
         <div className="dashboard-layout">
             {/* Sidebar Section */}
-            <aside className="sidebar">
-                <div className="sidebar-header">
-                    <img src={ltoLogo} alt="logo" className="sidebar-logo" />
-                    <span className="sidebar-title">MANAGEMENT SYSTEM</span>    
-                </div>
-            
-            <nav className="sidebar-nav">
-                {/* <div className="nav-item" onClick={() => navigate("/drivers")}> */}
-                <div className="nav-item active" ><VscWindow className="nav-icon"/><span className = "sidebar-text">HOME</span></div>
-                <div className="nav-item"><IoPersonOutline className="nav-icon"/><span className = "sidebar-text">DRIVERS</span></div>
-                <div className="nav-item"><IoCarOutline className="nav-icon"/><span className = "sidebar-text">VEHICLES</span></div>
-                <div className="nav-item" onClick={() => navigate("/registration")}><TbFileDescription className="nav-icon"/><span className = "sidebar-text">REGISTRATIONS</span></div>
-                <div className="nav-item"><GoAlert className="nav-icon"/><span className = "sidebar-text">VIOLATIONS</span></div>
-            </nav>
-
-            <div className="sidebar-footer" onClick = {handleSignout}>
-                <IoLogOutOutline className="nav-icon"/>
-                <span className="sidebar-text">SIGN OUT</span>
-            </div>  
-        </aside>
+            <Sidebar active="dashboard" />
 
         {/* Main Content Section */}      
         <main className="main-content">

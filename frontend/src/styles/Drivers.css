@@ -1,39 +1,98 @@
-.drivers-page {
-  padding: 24px;
-  font-family: Arial, sans-serif;
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;600;700&display=swap');
+
+:root {
+    --lto-blue: #0037AF;
+    --lto-hover-blue: #0a66c9;
+    --text-white: #FFFFFF;
+    --glass-white: rgba(255, 255, 255, 0.8);
 }
 
-.drivers-header {
+/* MAIN PAGE */
+.drivers-layout {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  height: 100vh;
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--text-white);
+}
+
+.drivers-page {
+  flex: 1;
+  padding: 10px 30px;
 }
 
 .drivers-header h1 {
-  margin: 0;
-  font-size: 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
+  color: var(--lto-blue);
+  letter-spacing: 2px;
+  margin-bottom: 23px;
+  margin-top: 12px;
 }
 
-.drivers-header p {
-  margin: 6px 0 0;
-  color: #666;
-}
-
-.add-driver-btn {
-  padding: 10px 16px;
+.drivers-divider {
   border: none;
-  background: #1f6feb;
+  border-top: 1px solid rgba(0, 0, 0, 0.112);
+  margin-bottom: 35px;
+}
+
+/* TOP CONTROLS */
+
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  width: 46px;
+  height: 38px;
+  border: none;
+  background: #f8a62b;
   color: white;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.drivers-table-container {
-  overflow-x: auto;
+.sort-dropdown {
+  height: 38px;
+  border: 1px solid #ddd;
+  padding: 0 12px;
   background: white;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 4px;
+  color: #777;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 220px;
+  height: 38px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding-left: 36px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  color: #999;
+}
+
+/* TABLE */
+
+.table-wrapper {
+  background: white;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
 }
 
 .drivers-table {
@@ -41,27 +100,80 @@
   border-collapse: collapse;
 }
 
-.drivers-table th,
-.drivers-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-  white-space: nowrap;
+.drivers-table thead {
+  background: #efefef;
 }
 
 .drivers-table th {
-  background: #f8f9fa;
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
 }
 
-.action-btn {
-  margin-right: 8px;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.drivers-table td {
+  padding: 20px;
+  border-top: 1px solid #ededed;
+  color: #444;
+  font-size: 14px;
 }
 
-.action-btn.danger {
-  background: #d9534f;
-  color: white;
+.drivers-table th:nth-child(1){
+  border-top-left-radius: 8px;
+}
+
+.drivers-table th:nth-child(7){
+  border-top-right-radius: 8px;
+}
+
+/* License */
+.drivers-table th:nth-child(1),
+.drivers-table td:nth-child(1) {
+    width: 140px;
+}
+
+/* Name */
+.drivers-table th:nth-child(2),
+.drivers-table td:nth-child(2) {
+    width: 180px;
+}
+
+/* Birth date */
+.drivers-table th:nth-child(3),
+.drivers-table td:nth-child(3) {
+    width: 80px;
+}
+
+/* Sex */
+.drivers-table th:nth-child(4),
+.drivers-table td:nth-child(4) {
+    width: 20px;
+}
+
+/* Address */
+.drivers-table th:nth-child(5),
+.drivers-table td:nth-child(5) {
+    width: 400px;
+}
+
+/* License Type */
+.drivers-table th:nth-child(6),
+.drivers-table td:nth-child(6) {
+    width: 150px;
+}
+
+/* License Status */
+.drivers-table th:nth-child(7),
+.drivers-table td:nth-child(7) {
+    width: 100px;
+}
+
+/* Table Rows */
+.drivers-table tbody tr {
+  height: 58px;
+}
+
+.drivers-table tbody tr:hover {
+  background: #fafafa;
 }
