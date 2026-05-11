@@ -65,6 +65,7 @@ function Dashboard() {
                 {action.map((action, index) => (
                     <div className="action-card" key={index} onClick={() => navigate(action.link)}>
                         <div className="card-icon">{action.icon}</div>
+                        <hr className="card-divider" />
                         <span className="card-text">{action.name}</span>
                     </div>
                 ))}
