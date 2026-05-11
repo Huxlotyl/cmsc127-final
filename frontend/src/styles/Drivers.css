@@ -15,11 +15,16 @@
   height: 100vh;
   font-family: 'Work Sans', sans-serif;
   background-color: var(--text-white);
+  overflow: hidden;
 }
 
 .drivers-page {
   flex: 1;
+  display: flex; 
+  flex-direction: column; 
   padding: 10px 30px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .drivers-header h1 {
@@ -34,7 +39,7 @@
 .drivers-divider {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.112);
-  margin-bottom: 35px;
+  margin: 0 0 20px 0;
 }
 
 /* TOP CONTROLS */
@@ -90,9 +95,22 @@
 /* TABLE */
 
 .table-wrapper {
+  margin-bottom: 40px;
   background: white;
   border: 1px solid #e3e3e3;
   border-radius: 8px;
+  overflow-y: auto; 
+  flex: 1;
+  min-height: 0;
+  position: relative;
+
+  /* Hide scroll bar -- multiple browsers */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .drivers-table {
@@ -102,6 +120,7 @@
 
 .drivers-table thead {
   background: #efefef;
+  display: table-header-group;
 }
 
 .drivers-table th {
@@ -110,6 +129,13 @@
   font-size: 12px;
   color: #666;
   font-weight: 600;
+}
+
+.drivers-table thead th {
+  position: sticky;
+  background: #efefef;
+  z-index: 2;
+  top: 0; 
 }
 
 .drivers-table td {
