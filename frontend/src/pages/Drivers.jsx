@@ -14,11 +14,19 @@ import ltoLogo from "../assets/lto_logo.svg";
 function Drivers() {
   const [drivers, setDrivers] = useState([]);
 
+  const fetchDrivers = (url = "http://localhost:5000/drivers") => {
+  fetch(url)
+    .then(res => res.json())
+    .then(data => setDrivers(data));
+  };
+
   useEffect(() => {
-    fetch("http://localhost:5000/drivers")
-      .then(res => res.json())
-      .then(data => setDrivers(data));
+    fetchDrivers();
   }, []);
+
+  const fetchSuspendedExpired = () => {
+  fetchDrivers("http://localhost:5000/drivers/suspended-expired");
+};
 
   return (
     <div className="drivers-layout">
@@ -37,6 +45,14 @@ function Drivers() {
           <button className="add-btn">
             <HiOutlinePlus />
           </button>
+
+        <button onClick={fetchSuspendedExpired}>
+          Suspended / Expired
+          </button>
+
+        <button onClick={() => fetchDrivers()}>
+          Show All
+        </button>
 
           <select className="sort-dropdown">
             <option>Sort By: Default</option>

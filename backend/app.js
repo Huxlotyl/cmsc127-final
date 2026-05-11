@@ -70,3 +70,42 @@ app.get("/violations", (req, res) => {
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
+
+
+
+
+app.get("/drivers/suspended-expired", (req, res) => {
+  const query = `
+    SELECT *
+    FROM driver
+    WHERE licenseStatus IN ('suspended', 'expired')
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.json(results);
+  });
+});
+
+app.get("/vehicles/expired-registration", (req, res) => {
+  const query = `
+    SELECT vehicle.*
+    FROM vehicle
+    JOIN registration
+      ON vehicle.plateNo = registration.plateNo
+    WHERE registration.expirationDate < CURDATE()
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.json(results);
+  });
+});
