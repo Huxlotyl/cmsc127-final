@@ -31,6 +31,24 @@ function Drivers() {
   
   return (
     <div className="drivers-page">
+      {/* Sidebar Section */}
+      <aside className="sidebar">
+          <div className="sidebar-header">
+              <img src={ltoLogo} alt="logo" className="sidebar-logo" />
+              <span className="sidebar-title">MANAGEMENT SYSTEM</span>    
+          </div>
+      
+      <nav className="sidebar-nav">
+          {/* <div className="nav-item" onClick={() => navigate("/drivers")}> */}
+          <div className="nav-item active" ><VscWindow className="nav-icon"/><span className = "sidebar-text">HOME</span></div>
+          <div className="nav-item"><IoPersonOutline className="nav-icon"/><span className = "sidebar-text">DRIVERS</span></div>
+          <div className="nav-item"><IoCarOutline className="nav-icon"/><span className = "sidebar-text">VEHICLES</span></div>
+          <div className="nav-item" onClick={() => navigate("/registration")}><TbFileDescription className="nav-icon"/><span className = "sidebar-text">REGISTRATIONS</span></div>
+          <div className="nav-item"><GoAlert className="nav-icon"/><span className = "sidebar-text">VIOLATIONS</span></div>
+      </nav>
+      </aside>
+
+
       <div className="drivers-header">
         <div>
           <h1>Drivers</h1>

@@ -18,7 +18,7 @@ function Dashboard() {
     };
 
     const action = [
-        { name: "VIEW DRIVERS", icon:  <IoPersonOutline/>},
+        { name: "VIEW DRIVERS", icon:  <IoPersonOutline/>, link: "/drivers" },
         { name: "VIEW VEHICLES", icon: <IoCarOutline />},
         { name: "VIEW REGISTRATIONS", icon: <TbFileDescription />, link: "/registration" },
         { name: "VIEW VIOLATIONS", icon: <GoAlert />},   
@@ -33,40 +33,34 @@ function Dashboard() {
                     <span className="sidebar-title">MANAGEMENT SYSTEM</span>    
                 </div>
             
-            <nav className="sidebar-nav">
-                {/* <div className="nav-item" onClick={() => navigate("/drivers")}> */}
-                <div className="nav-item active" ><VscWindow className="nav-icon"/><span className = "sidebar-text">HOME</span></div>
-                <div className="nav-item"><IoPersonOutline className="nav-icon"/><span className = "sidebar-text">DRIVERS</span></div>
-                <div className="nav-item"><IoCarOutline className="nav-icon"/><span className = "sidebar-text">VEHICLES</span></div>
-                <div className="nav-item" onClick={() => navigate("/registration")}><TbFileDescription className="nav-icon"/><span className = "sidebar-text">REGISTRATIONS</span></div>
-                <div className="nav-item"><GoAlert className="nav-icon"/><span className = "sidebar-text">VIOLATIONS</span></div>
-            </nav>
+                <nav className="sidebar-nav">
+                    {/* <div className="nav-item" onClick={() => navigate("/drivers")}> */}
+                    <div className="nav-item active" ><VscWindow className="nav-icon"/><span className = "sidebar-text">HOME</span></div>
+                    <div className="nav-item"><IoPersonOutline className="nav-icon"/><span className = "sidebar-text">DRIVERS</span></div>
+                    <div className="nav-item"><IoCarOutline className="nav-icon"/><span className = "sidebar-text">VEHICLES</span></div>
+                    <div className="nav-item" onClick={() => navigate("/registration")}><TbFileDescription className="nav-icon"/><span className = "sidebar-text">REGISTRATIONS</span></div>
+                    <div className="nav-item"><GoAlert className="nav-icon"/><span className = "sidebar-text">VIOLATIONS</span></div>
+                </nav>
 
-            <div className="sidebar-footer" onClick = {handleSignout}>
-                <IoLogOutOutline className="nav-icon"/>
-                <span className="sidebar-text">SIGN OUT</span>
-            </div>  
-        </aside>
+                <div className="sidebar-footer" onClick = {handleSignout}>
+                    <IoLogOutOutline className="nav-icon"/>
+                    <span className="sidebar-text">SIGN OUT</span>
+                </div>  
+            </aside>
 
         {/* Main Content Section */}      
         <main className="main-content">
-            <header className="dashboard-header">
-                <h1>DASHBOARD</h1>
-            </header>
-
-            <hr className="dashboard-divider" />
+             <header className="dashboard-header">
+                 <h1>DASHBOARD</h1>
+             </header>
              
-            <section 
-                className="description" 
-                onClick={() => window.open("https://portal.lto.gov.ph", "_blank")}
-                style={{ cursor: "pointer" }}
-                > 
+            <section className="description"> 
                 <div className="description-content">    
                     <h2>Land Transportation Office</h2>
                     <p>A front line government agency showcasing fast and efficient public service for a progressive land transport sector.</p>             
                 </div>
-            </section>
-                     
+            </section>          
+        
             <section className="action-border">
                 {action.map((action, index) => (
                     <div className="action-card" key={index} onClick={() => navigate(action.link)}>
