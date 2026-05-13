@@ -20,9 +20,7 @@ function Drivers() {
 
   // Fetch data
   useEffect(() => {
-    fetch("http://localhost:5000/drivers")
-      .then(res => res.json())
-      .then(data => setDrivers(data));
+    fetchDrivers();
   }, []);
 
   // Format date to Month Day, Year
@@ -44,10 +42,18 @@ function Drivers() {
         <hr className="drivers-divider" />
 
         <div className="top-controls">
-          {/* ✅ Button toggles state */}
+          {/* Button toggles state */}
           <button className="add-btn" onClick={() => setShowDialog(true)}>
             <HiOutlinePlus />
           </button>
+
+        <button onClick={fetchSuspendedExpired}>
+          Suspended / Expired
+          </button>
+
+        <button onClick={() => fetchDrivers()}>
+          Show All
+        </button>
 
           <select className="sort-dropdown">
             <option>Sort By: Default</option>
