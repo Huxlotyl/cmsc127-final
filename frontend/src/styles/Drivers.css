@@ -149,7 +149,7 @@
   border-top-left-radius: 8px;
 }
 
-.drivers-table th:nth-child(7){
+.drivers-table th:nth-child(9){
   border-top-right-radius: 8px;
 }
 
@@ -162,25 +162,26 @@
 /* Name */
 .drivers-table th:nth-child(2),
 .drivers-table td:nth-child(2) {
-    width: 180px;
+    width: 150px;
 }
 
 /* Birth date */
 .drivers-table th:nth-child(3),
 .drivers-table td:nth-child(3) {
-    width: 80px;
+    width: 115px;
 }
 
 /* Sex */
 .drivers-table th:nth-child(4),
 .drivers-table td:nth-child(4) {
-    width: 20px;
+    width: 10px;
 }
 
 /* Address */
 .drivers-table th:nth-child(5),
 .drivers-table td:nth-child(5) {
-    width: 400px;
+    width: 200px;
+    line-height: 1.5;
 }
 
 /* License Type */
@@ -189,9 +190,15 @@
     width: 150px;
 }
 
-/* License Status */
+/* License Issuance */
 .drivers-table th:nth-child(7),
 .drivers-table td:nth-child(7) {
+    width: 100px;
+}
+
+/* License Expiration */
+.drivers-table th:nth-child(8),
+.drivers-table td:nth-child(8) {
     width: 100px;
 }
 
