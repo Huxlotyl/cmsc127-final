@@ -14,10 +14,9 @@
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+}
 
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
+body {
+  margin: 0;
+  padding: 0;
 }
