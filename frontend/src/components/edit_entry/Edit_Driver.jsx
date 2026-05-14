@@ -26,8 +26,8 @@ export default function EditDriverDialog({ driver, onClose }) {
   console.log("CLEANED STATUS:", cleaned);
 
   switch (cleaned) {
-    case "active":
-      return "Active";
+    case "valid":
+      return "Valid";
     case "expired":
       return "Expired";
     case "suspended":
