@@ -17,11 +17,60 @@ function Drivers() {
   const [drivers, setDrivers] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedDriver, setSelectedDriver] = useState(null);
+  const [licenseStatusFilter, setLicenseStatusFilter] = useState("");
+  const [sexFilter, setSexFilter] = useState("");
+  const [licenseTypeFilter, setLicenseTypeFilter] = useState("");
+  const [ageRangeFilter, setAgeRangeFilter] = useState("");
 
   // Fetch data
+  async function fetchDrivers() {
+  try {
+    const params = new URLSearchParams();
+
+    if (licenseStatusFilter) {
+      params.append("licenseStatus", licenseStatusFilter);
+    }
+
+    if (sexFilter) {
+      params.append("sex", sexFilter);
+    }
+
+    if (licenseTypeFilter) {
+  params.append("licenseType", licenseTypeFilter);
+  }
+
+    if (ageRangeFilter) {
+  params.append("ageRange", ageRangeFilter);
+  }
+
+    const url = `http://localhost:5000/drivers?${params.toString()}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    setDrivers(data);
+  } catch (err) {
+    console.error("Error fetching drivers:", err);
+  }
+}
+
+  
+  // Format date to Month Day, Year
+  function formatDate(dateString) {
+    if (!dateString) return "";
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  }
+
+  // Call fetchDrivers once when the page loads
   useEffect(() => {
-    fetchDrivers();
-  }, []);
+  fetchDrivers();
+  }, [
+    licenseStatusFilter,
+    sexFilter,
+    licenseTypeFilter,
+    ageRangeFilter
+  ]);
 
   // Format date to Month Day, Year
   function formatDate(dateString) {
@@ -47,13 +96,48 @@ function Drivers() {
             <HiOutlinePlus />
           </button>
 
-        <button onClick={fetchSuspendedExpired}>
-          Suspended / Expired
-          </button>
+        <select
+          value={licenseStatusFilter}
+          onChange={(e) => setLicenseStatusFilter(e.target.value)}
+        >
+          <option value="">All Status</option>
+          <option value="Valid">Valid</option>
+          <option value="Active">Active</option>
+          <option value="Expired">Expired</option>
+          <option value="Suspended">Suspended</option>
+          <option value="Revoked">Revoked</option>
+        </select>
 
-        <button onClick={() => fetchDrivers()}>
-          Show All
-        </button>
+        <select
+          value={sexFilter}
+          onChange={(e) => setSexFilter(e.target.value)}
+        >
+          <option value="">All Sex</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+
+        <select
+          value={licenseTypeFilter}
+          onChange={(e) => setLicenseTypeFilter(e.target.value)}
+        >
+          <option value="">All License Types</option>
+          <option value="Non-Professional">Non-Professional</option>
+          <option value="Student Permit">Student Permit</option>
+          <option value="Professional">Professional</option>
+        </select>
+
+        <select
+          value={ageRangeFilter}
+          onChange={(e) => setAgeRangeFilter(e.target.value)}
+        >
+          <option value="">All Ages</option>
+          <option value="18-25">18-25</option>
+          <option value="26-35">26-35</option>
+          <option value="36-45">36-45</option>
+          <option value="46-60">46-60</option>
+          <option value="61+">61+</option>
+        </select>
 
           <select className="sort-dropdown">
             <option>Sort By: Default</option>
