@@ -267,7 +267,7 @@ export default function EditDriverDialog({ driver, onClose }) {
                   disabled={!editable}
                 >
                   <option value="">Select status</option>
-                  <option value="Active">Active</option>
+                  <option value="Valid">Valid</option>
                   <option value="Expired">Expired</option>
                   <option value="Suspended">Suspended</option>
                   <option value="Revoked">Revoked</option>
