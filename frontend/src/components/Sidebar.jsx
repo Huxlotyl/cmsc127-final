@@ -60,6 +60,7 @@ function Sidebar({ active }) {
                         className={`nav-item ${
                             active === "vehicles" ? "active" : ""
                         }`}
+                        onClick={() => navigate("/vehicles")}
                     >
                         <IoCarOutline className="nav-icon" />
                         <span className="sidebar-text">VEHICLES</span>
