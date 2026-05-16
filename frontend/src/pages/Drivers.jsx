@@ -189,7 +189,10 @@ function Drivers() {
 
         {/* Render dialog when state is true */}
         {showDialog && (
-          <AddDriverDialog onClose={() => setShowDialog(false)} />
+          <AddDriverDialog 
+          onClose={() => setShowDialog(false)} 
+          refreshDrivers={fetchDrivers}
+          />
         )}
 
         {/* Render edit dialog when a driver is selected */}
@@ -198,6 +201,7 @@ function Drivers() {
             key={selectedDriver.id}
             driver={selectedDriver}
             onClose={() => setSelectedDriver(null)}
+            refreshDrivers={fetchDrivers}
           />
         )}
       </main>

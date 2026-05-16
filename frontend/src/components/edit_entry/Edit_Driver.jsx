@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/Add_Driver.css";
 import { IoPersonOutline } from "react-icons/io5";
 
-export default function EditDriverDialog({ driver, onClose }) {
+export default function EditDriverDialog({ driver, onClose, refreshDrivers }) {
   // Normalize dates into YYYY-MM-DD for <input type="date" />
   const normalizeDate = (dateString) => {
     if (!dateString) return "";
@@ -39,15 +39,19 @@ export default function EditDriverDialog({ driver, onClose }) {
   }
 };
 
-  const formData = driver
-  ? {
-      ...driver,
-      birthdate: normalizeDate(driver.birthdate),
-      licenseIssuance: normalizeDate(driver.licenseIssuance),
-      licenseExpiration: normalizeDate(driver.licenseExpiration),
-      licenseStatus: normalizeStatus(driver.licenseStatus),
+  const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    if (driver) {
+      setFormData({
+        ...driver,
+        birthdate: normalizeDate(driver.birthdate),
+        licenseIssuance: normalizeDate(driver.licenseIssuance),
+        licenseExpiration: normalizeDate(driver.licenseExpiration),
+        licenseStatus: normalizeStatus(driver.licenseStatus),
+      });
     }
-  : {};
+  }, [driver]);
 
   const [editable, setEditable] = useState(false);
   const [showEditAlert, setShowEditAlert] = useState(false);
@@ -55,7 +59,10 @@ export default function EditDriverDialog({ driver, onClose }) {
 
   const handleChange = (e) => {
     if (editable) {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+      });
     }
   };
 
@@ -95,13 +102,14 @@ export default function EditDriverDialog({ driver, onClose }) {
   const handleSave = async () => {
     if (!validateFields()) return;
     try {
-      const res = await fetch(`http://localhost:5000/drivers/${driver.id}`, {
+      const res = await fetch(`http://localhost:5000/drivers/${driver.licenseNo}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       if (res.ok) {
         alert("Driver details updated successfully!");
+        refreshDrivers();
         onClose();
       } else {
         alert("Error updating driver.");
@@ -115,11 +123,12 @@ export default function EditDriverDialog({ driver, onClose }) {
   // Delete driver
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/drivers/${driver.id}`, {
+      const res = await fetch(`http://localhost:5000/drivers/${driver.licenseNo}`, {
         method: "DELETE",
       });
       if (res.ok) {
         alert("Driver deleted successfully!");
+        refreshDrivers();
         onClose();
       } else {
         alert("Error deleting driver.");
@@ -302,7 +311,7 @@ export default function EditDriverDialog({ driver, onClose }) {
             <div className="alert" onClick={(e) => e.stopPropagation()}>
               <h3 className="alert-heading">Edit {formData.fullName || "this driver"}'s Details</h3>
               <p className="alert-text">You are about to edit this driver's details. Press Continue to proceed.</p>
-              <button className="confirm-btn" onClick={() => { setEditable(true); setShowEditAlert(false); }}>
+              <button className="continue-btn" onClick={() => { setEditable(true); setShowEditAlert(false); }}>
                 Continue
               </button>
             </div>
@@ -315,7 +324,7 @@ export default function EditDriverDialog({ driver, onClose }) {
             <div className="alert" onClick={(e) => e.stopPropagation()}>
               <h3 className="alert-heading">Delete {formData.fullName || "this driver"}?</h3>
               <p className="alert-text">Are you sure you want to delete this driver from the database?</p>
-              <button className="confirm-btn" onClick={handleDelete}>Confirm Delete</button>
+              <button className="confirmdel-btn" onClick={handleDelete}>Confirm Delete</button>
             </div>
           </div>
         )}
