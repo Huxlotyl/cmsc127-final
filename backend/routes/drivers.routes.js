@@ -10,6 +10,8 @@ router.get("/", (req, res) => {
   let conditions = [];
   let values = [];
 
+  // FILTERS ===========================
+
   // License Status filter
   if (licenseStatus) {
     conditions.push("licenseStatus = ?");
