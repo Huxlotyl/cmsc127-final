@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/Add_Driver.css";
 import { IoPersonOutline } from "react-icons/io5";
 
-export default function AddDriverDialog({ onClose }) {
+export default function AddDriverDialog({ onClose, refreshDrivers }) {
   const [formData, setFormData] = useState({
     licenseNo: "",
     fullName: "",
@@ -67,6 +67,7 @@ export default function AddDriverDialog({ onClose }) {
       if (res.ok) {
         alert("Driver added successfully!");
         setShowAlert(false);
+        refreshDrivers();
         onClose();
       } else {
         alert("Error adding driver.");

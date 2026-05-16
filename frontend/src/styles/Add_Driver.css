@@ -157,3 +157,27 @@
   justify-content: center;
   align-items: center;
 }
+
+.continue-btn {
+  background-color: #f8a62b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 91px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmdel-btn {
+  background-color: #e20d0d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 135px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
