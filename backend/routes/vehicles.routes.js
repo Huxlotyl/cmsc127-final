@@ -1,6 +1,6 @@
 import express from "express";
-const router = express.Router();
 import db from "../db.js";
+const router = express.Router();
 
 // Fetch Vehicle data
 router.get("/", (req, res) => {
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
   });
 });
 
-app.get("/vehicles/owners", (req, res) => {
+router.get("/owners", (req, res) => {
   const owner = `%${req.query.owner}%`;
   const query = `
     SELECT vehicle.*
@@ -33,7 +33,7 @@ app.get("/vehicles/owners", (req, res) => {
   });
 });
 
-app.get("/vehicles/search", (req, res) => {
+router.get("/search", (req, res) => {
   const search = `%${req.query.search}%`;
   const query = `
     SELECT *
@@ -58,7 +58,7 @@ app.get("/vehicles/search", (req, res) => {
   });
 });
 
-  app.get("/vehicles/sort", (req, res) => {
+  router.get("/sort", (req, res) => {
     const sort = req.query.type;
     const validColumns = ["chassisNo", "engineNo", "color", "vehicleType", "make", "model", "year"];
     if (!validColumns.includes(sort)) {
@@ -107,5 +107,74 @@ app.get("/vehicles/search", (req, res) => {
       }
     );
   });
+
+
+// Update Vehicle
+router.put("/:plateNo", (req, res) => {
+  const { plateNo } = req.params;
+  const {
+    engineNo,
+    color,
+    licenseNo
+  } = req.body;
+
+  // validation - all fields are required
+  if (!engineNo || !color || !licenseNo) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
+
+  const sql = `
+    UPDATE vehicle
+    SET engineNo = ?, 
+        color = ?, 
+        licenseNo = ?
+    WHERE plateNo = ?
+  `;
+
+  db.query(
+    sql,
+    [
+      engineNo,
+      color || null, // allow blank
+      licenseNo,
+      plateNo
+    ],
+    (err, result) => {
+      if (err) {
+        // Handle foreign key constraint errors
+        if (err.code === "ER_ROW_IS_REFERENCED_2") {
+          return res.status(409).json({ error: "Cannot update vehicle: plateNo is referenced in another table." });
+        }
+        console.error(err);
+        return res.status(500).json({ error: "Failed to update vehicle" });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Vehicle not found" });
+      }
+      res.json({ message: "Vehicle updated successfully!" });
+    }
+  );
+});
+
+// Delete Vehicle
+router.delete("/:plateNo", (req, res) => {
+  const { plateNo } = req.params;
+
+  const sql = "DELETE FROM vehicle WHERE plateNo = ?";
+  db.query(sql, [plateNo], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to delete vehicle" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Vehicle not found" });
+    }
+
+    res.json({ message: "Vehicle deleted successfully!" });
+  });
+});
+
+
 
 export default router;
