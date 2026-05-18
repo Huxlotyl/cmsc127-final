@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Vehicles.css";
 import Sidebar from "../components/Sidebar";
+import AddVehicleDialog from "../components/add_entry/Add_Vehicle.jsx";
+import EditVehicleDialog from "../components/edit_entry/Edit_Vehicle.jsx";
 
-import { VscWindow } from "react-icons/vsc";
 import { IoPersonOutline, IoCarOutline } from "react-icons/io5";
 import { TbFileDescription } from "react-icons/tb";
 import { GoAlert } from "react-icons/go";
@@ -16,6 +17,8 @@ function Vehicles() {
   const [searchOwner, setSearchOwner] = useState("");
   const [searchVehicle, setSearchVehicle] = useState("");
   const [sortBy, setSortBy] = useState("default");
+  const [showDialog, setShowDialog] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const fetchVehicles = (url = "http://localhost:5000/vehicles") => {
   fetch(url)
@@ -82,7 +85,7 @@ function Vehicles() {
         <hr className="vehicles-divider" />
 
         <div className="top-controls">
-          <button className="add-btn" value>
+          <button className="add-btn" onClick={() => setShowDialog(true)}>
             <HiOutlinePlus />
           </button>
 
@@ -124,13 +127,13 @@ function Vehicles() {
                 <th>MAKE</th>
                 <th>MODEL</th>
                 <th>YEAR</th>
-                <th>LICENSE NO.</th> 
+                <th>OWNER'S LICENSE NO.</th> 
               </tr>
             </thead>
 
             <tbody>
               {vehicles.map((vehicle) => (
-                <tr key={vehicle.plateNo}>
+                <tr key={vehicle.plateNo} onClick={() => setSelectedVehicle(vehicle)} >
                   <td>{vehicle.plateNo}</td>
                   <td>{vehicle.chassisNo}</td>
                   <td>{vehicle.engineNo}</td>
@@ -145,6 +148,21 @@ function Vehicles() {
             </tbody>
           </table>
         </div>
+        {/* Render dialog when state is true */}
+        {showDialog && (
+          <AddVehicleDialog onClose={() => setShowDialog(false)} />
+        )}
+
+        {/* Render edit dialog when a vehicle is selected */}
+        {selectedVehicle && (
+          <EditVehicleDialog
+            key={selectedVehicle.plateNo}
+            vehicle={selectedVehicle}
+            onClose={() => setSelectedVehicle(null)}
+            refreshVehicles={fetchVehicles}
+          />
+        )}
+        
       </main>
     </div>
   );

@@ -20,7 +20,7 @@ function Dashboard() {
 
     const action = [
         { name: "VIEW DRIVERS", icon:  <IoPersonOutline/>, link: "/drivers" },
-        { name: "VIEW VEHICLES", icon: <IoCarOutline />},
+        { name: "VIEW VEHICLES", icon: <IoCarOutline />, link: "/vehicles" },
         { name: "VIEW REGISTRATIONS", icon: <TbFileDescription />, link: "/registration" },
         { name: "VIEW VIOLATIONS", icon: <GoAlert />},   
     ];
