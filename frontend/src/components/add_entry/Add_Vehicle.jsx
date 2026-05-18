@@ -155,10 +155,10 @@ export default function AddVehicleDialog({ onClose }) {
                   onChange={handleChange}
                 >
                   <option value="">Vehicle Type</option>
-                  <option value="car">Passenger Car</option>
-                  <option value="bus">Bus</option>
-                  <option value="truck">Truck</option>
-                  <option value="motorcycle">Motorcycle</option>
+                  <option value="Passenger Car">Passenger Car</option>
+                  <option value="Bus">Bus</option>
+                  <option value="Truck">Truck</option>
+                  <option value="Motorcycle">Motorcycle</option>
                 </select>
               </td>
             </tr>
@@ -197,7 +197,7 @@ export default function AddVehicleDialog({ onClose }) {
               </td>
             </tr>
 
-            {/* License Issuance and Expiration */}
+            {/* Owner's License Number */}
             <tr>
               <th>OWNER'S LICENSE NO.</th>
               <td className="wide-cell" colSpan="3">
