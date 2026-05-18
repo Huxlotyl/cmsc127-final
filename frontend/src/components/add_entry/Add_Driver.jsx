@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import "../../styles/Add_Driver.css";
-import { IoPersonOutline } from "react-icons/io5";
+import { IoCarOutline } from "react-icons/io5";
 
-export default function AddDriverDialog({ onClose, refreshDrivers }) {
+export default function AddVehicleDialog({ onClose }) {
   const [formData, setFormData] = useState({
-    licenseNo: "",
-    fullName: "",
-    birthdate: "",
-    sex: "",
-    address: "",
-    licenseType: "",
-    licenseIssuance: "",
-    licenseExpiration: "",
-    licenseStatus: ""
+    plateNo: "",
+    chassisNo: "",
+    engineNo: "",
+    color: "",
+    vehicleType: "",
+    make: "",
+    model: "",
+    year: "",
+    licenseNo: ""
   });
   const [showAlert, setShowAlert] = useState(false);
 
@@ -22,27 +22,29 @@ export default function AddDriverDialog({ onClose, refreshDrivers }) {
 
   // Field labels for alert
   const fieldLabels = {
-    licenseNo: "License Number",
-    fullName: "Name",
-    birthdate: "Birth Date",
-    sex: "Sex",
-    licenseType: "License Type",
-    licenseIssuance: "License Issuance",
-    licenseExpiration: "License Expiration",
-    licenseStatus: "Status"
+    plateNo: "Plate Number",
+    chassisNo: "Chassis Number",
+    engineNo: "Engine Number",
+    color: "Color",
+    vehicleType: "Vehicle Type",
+    make: "Make",
+    model: "Model",
+    year: "Year",
+    licenseNo: "Owner's License No."
   };
 
   // Handle Add button click: validate required fields before showing confirmation alert
   const handleAddClick = () => {
     const requiredFields = [
-      "licenseNo",
-      "fullName",
-      "birthdate",
-      "sex",
-      "licenseType",
-      "licenseIssuance",
-      "licenseExpiration",
-      "licenseStatus"
+      "plateNo",
+      "chassisNo",
+      "engineNo",
+      "color",
+      "vehicleType",
+      "make",
+      "model",
+      "year",
+      "licenseNo"
     ];
 
     for (const field of requiredFields) {
@@ -58,19 +60,19 @@ export default function AddDriverDialog({ onClose, refreshDrivers }) {
   // Success/Error alert
   const handleConfirm = async () => {
     try {
-      const res = await fetch("http://localhost:5000/drivers", {
+      const res = await fetch("http://localhost:5000/vehicles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
 
       if (res.ok) {
-        alert("Driver added successfully!");
+        alert("Vehicle added successfully!");
         setShowAlert(false);
-        refreshDrivers();
         onClose();
       } else {
-        alert("Error adding driver.");
+        console.log()
+        alert("Error adding vehicle.");
       }
     } catch (err) {
       console.error(err);
@@ -84,136 +86,129 @@ export default function AddDriverDialog({ onClose, refreshDrivers }) {
 
         {/* Header */}
         <div className="dialog-header">
-          <IoPersonOutline className="driver-icon" />
-          <h2 className="driver-title">Driver Details</h2>
+          <IoCarOutline className="driver-icon" />
+          <h2 className="driver-title">Vehicle Details</h2>
         </div>
 
         {/* Table Form */}
         <table className="driver-table">
           <tbody>
-            {/* License Number */}
+            {/* Plate Number */}
             <tr>
-              <th>LICENSE NO</th>
+              <th>PLATE NO.</th>
+              <td className="wide-cell" colSpan="3">
+                <input
+                  type="text"
+                  name="plateNo"
+                  value={formData.plateNo}
+                  maxLength="7"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+
+            {/* Chassis Number */}
+            <tr>
+              <th className="wide-cell">CHASSIS NO.</th>
+              <td colSpan="3">
+                <input
+                  type="text"
+                  name="chassisNo"
+                  value={formData.chassisNo}
+                  maxLength = "17"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+
+            {/* Engine Number */}
+            <tr>
+              <th className="wide-cell">ENGINE NO.</th>
+              <td colSpan="3">
+                <input
+                  type="text"
+                  name="engineNo"
+                  value={formData.engineNo}
+                  maxLength="20"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+
+            {/* Color and Vehicle Type */}
+            <tr>
+             <th>COLOR</th>
+              <td className="birth-cell">
+                <input
+                  type="text"
+                  name="color"
+                  value={formData.color}
+                  onChange={handleChange}
+                />
+              </td>        
+              <th>VEHICLE TYPE</th>
+              <td className="vtype-cell">
+                <select
+                  className="sex-input"
+                  name="vehicleType"
+                  value={formData.vehicleType}
+                  onChange={handleChange}
+                >
+                  <option value="">Vehicle Type</option>
+                  <option value="Passenger Car">Passenger Car</option>
+                  <option value="Bus">Bus</option>
+                  <option value="Truck">Truck</option>
+                  <option value="Motorcycle">Motorcycle</option>
+                </select>
+              </td>
+            </tr>
+
+            {/* Make */}
+            <tr>
+              <th>MAKE</th>
+              <td className="wide-cell" colSpan="3">
+                <input
+                  name="make"
+                  value={formData.make}
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+
+            {/* Model and Year */}
+            <tr>
+              <th>Model</th>
+              <td className="birth-cell">
+                <input
+                  type="text"
+                  name="model"
+                  value={formData.model}
+                  onChange={handleChange}
+                />
+              </td>
+              <th>Year</th>
+              <td className="birth-cell">
+                <input
+                  type="number"
+                  name="year"
+                  value={formData.year}
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+
+            {/* Owner's License Number */}
+            <tr>
+              <th>OWNER'S LICENSE NO.</th>
               <td className="wide-cell" colSpan="3">
                 <input
                   type="text"
                   name="licenseNo"
                   value={formData.licenseNo}
-                  maxLength="13"
                   onChange={handleChange}
                 />
               </td>
-            </tr>
-
-            {/* Name */}
-            <tr>
-              <th className="wide-cell">NAME</th>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-
-            {/* Birth date and Sex */}
-            <tr>
-              <th>BIRTH DATE</th>
-              <td className="birth-cell">
-                <input
-                  type="date"
-                  name="birthdate"
-                  value={formData.birthdate}
-                  onChange={handleChange}
-                />
-              </td>
-              <th>SEX</th>
-              <td className="sex-cell">
-                <select
-                  className="sex-input"
-                  name="sex"
-                  value={formData.sex}
-                  onChange={handleChange}
-                >
-                  <option value="">Sex</option>
-                  <option value="M">M</option>
-                  <option value="F">F</option>
-                </select>
-              </td>
-            </tr>
-
-            {/* Address */}
-            <tr>
-              <th>ADDRESS</th>
-              <td className="wide-cell" colSpan="3">
-                <input
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-
-            {/* License Type */}
-            <tr>
-              <th>LICENSE TYPE</th>
-              <td className="wide-cell" colSpan="3">
-                <select
-                  name="licenseType"
-                  value={formData.licenseType}
-                  onChange={handleChange}
-                >
-                  <option value="">Select type</option>
-                  <option value="Student Permit">Student Permit</option>
-                  <option value="Non-Professional">Non-Professional</option>
-                  <option value="Professional">Professional</option>
-                </select>
-              </td>
-            </tr>
-
-            {/* License Issuance and Expiration */}
-            <tr>
-              <th>ISSUANCE</th>
-              <td className="wide-cell" colSpan="3">
-                <input
-                  type="date"
-                  name="licenseIssuance"
-                  value={formData.licenseIssuance}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>EXPIRATION</th>
-              <td className="wide-cell" colSpan="3">
-                <input
-                  type="date"
-                  name="licenseExpiration"
-                  value={formData.licenseExpiration}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-
-            {/* Status */}
-            <tr>
-              <th>STATUS</th>
-              <td className="wide-cell" colSpan="3">
-                <select
-                  name="licenseStatus"
-                  value={formData.licenseStatus}
-                  onChange={handleChange}
-                >
-                  <option value="">Select status</option>
-                  <option value="Valid">Valid</option>
-                  <option value="Expired">Expired</option>
-                  <option value="Suspended">Suspended</option>
-                  <option value="Revoked">Revoked</option>
-                </select>
-              </td>
-            </tr>
+            </tr>                
           </tbody>
         </table>
 
@@ -231,8 +226,8 @@ export default function AddDriverDialog({ onClose, refreshDrivers }) {
         {showAlert && (
           <div className="alert-overlay" onClick={() => setShowAlert(false)}>
             <div className="alert" onClick={(e) => e.stopPropagation()}>
-              <h3 className="alert-heading">ADD {formData.fullName || "this driver"} TO DRIVERS?</h3>
-              <p className ="alert-text">Please confirm that you want to add this driver to the database. Click outside to go back.</p>
+              <h3 className="alert-heading">ADD {formData.plateNo || "this vehicle"} TO VEHICLES?</h3>
+              <p className ="alert-text">Please confirm that you want to add this vehicle to the database. Click outside to go back.</p>
               <button className="confirm-btn" onClick={handleConfirm}>Confirm</button>
             </div>
           </div>
